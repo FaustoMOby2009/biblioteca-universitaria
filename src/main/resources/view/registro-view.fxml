@@ -16,7 +16,7 @@
         <URL value="@/main/resources/css/registro-view.css" />
     </stylesheets>
    <children>
-      <GridPane prefHeight="500.0" prefWidth="600.0" styleClass="root" stylesheets="@../css/registro-view.css">
+      <GridPane prefHeight="500.0" prefWidth="600.0" styleClass="root" stylesheets="@../css/estilo-view.css">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="145.0" minWidth="0.0" prefWidth="45.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="550.0" minWidth="10.0" prefWidth="510.0" />
@@ -30,22 +30,22 @@
          <children>
             <Pane prefHeight="430.0" prefWidth="510.0" styleClass="card" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <Label layoutX="175.0" layoutY="15.0" styleClass="title-label" text="Registro de Usuario" />
+                  <Label layoutX="115.0" layoutY="52.0" styleClass="title-label" text="Registrar a Bibliotecario" />
                   
-                  <Label layoutX="115.0" layoutY="55.0" text="Nombre" />
-                  <TextField fx:id="txtFieldNombre" layoutX="115.0" layoutY="80.0" prefHeight="30.0" prefWidth="280.0" promptText="Nombre" />
+                  <Label layoutX="115.0" layoutY="107.0" text="Nombre" />
+                  <TextField fx:id="txtFieldNombre" layoutX="115.0" layoutY="132.0" prefHeight="30.0" prefWidth="280.0" promptText="Nombre" />
                   
-                  <Label layoutX="115.0" layoutY="120.0" text="Username" />
-                  <TextField fx:id="txtFieldUsername" layoutX="115.0" layoutY="145.0" prefHeight="30.0" prefWidth="280.0" promptText="Username" />
+                  <Label layoutX="115.0" layoutY="172.0" text="Username" />
+                  <TextField fx:id="txtFieldUsername" layoutX="115.0" layoutY="197.0" prefHeight="30.0" prefWidth="280.0" promptText="Username" />
                   
-                  <Label layoutX="115.0" layoutY="185.0" text="Email" />
-                  <TextField fx:id="txtFieldEmail" layoutX="115.0" layoutY="210.0" prefHeight="30.0" prefWidth="280.0" promptText="Email" />
+                  <Label layoutX="115.0" layoutY="237.0" text="Email" />
+                  <TextField fx:id="txtFieldEmail" layoutX="115.0" layoutY="262.0" prefHeight="30.0" prefWidth="280.0" promptText="Email" />
                   
-                  <Label layoutX="115.0" layoutY="250.0" text="Password" />
-                  <PasswordField fx:id="txtFieldPass" layoutX="115.0" layoutY="275.0" prefHeight="30.0" prefWidth="280.0" promptText="Password" />
+                  <Label layoutX="115.0" layoutY="302.0" text="Password" />
+                  <PasswordField fx:id="txtFieldPass" layoutX="115.0" layoutY="327.0" prefHeight="30.0" prefWidth="280.0" promptText="Password" />
                   
-                  <Button layoutX="115.0" layoutY="330.0" mnemonicParsing="false" onAction="#handleRegistrarBibliotecario" prefHeight="32.0" prefWidth="130.0" text="Guardar" />
-                  <Button layoutX="265.0" layoutY="330.0" mnemonicParsing="false" onAction="#handleMostrarLogin" prefHeight="32.0" prefWidth="130.0" text="Volver" />
+                  <Button layoutX="115.0" layoutY="382.0" mnemonicParsing="false" onAction="#handleRegistrarBibliotecario" prefHeight="32.0" prefWidth="130.0" text="Guardar" />
+                  <Button layoutX="265.0" layoutY="382.0" mnemonicParsing="false" onAction="#handleMostrarLogin" prefHeight="32.0" prefWidth="130.0" text="Volver" />
                </children>
             </Pane>
          </children>

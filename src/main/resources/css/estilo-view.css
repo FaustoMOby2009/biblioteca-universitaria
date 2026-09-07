@@ -1,0 +1,72 @@
+/* login-view.css - Estilo 'Portada de Libro Clásico' */
+
+.root {
+    /* Fondo café oscuro simulando la pasta de un libro o una mesa de madera */
+    -fx-background-color: #3e2723;
+    -fx-font-family: "Georgia", "Times New Roman", serif; 
+}
+
+/* Tarjetas y Contenedores (Simulando las páginas o el papel) */
+.pane, .card {
+    -fx-background-color: #f4ecd8; /* Color pergamino/papel viejo */
+    -fx-background-radius: 6px;
+    -fx-border-color: #8d6e63; /* Borde café claro */
+    -fx-border-radius: 6px;
+    -fx-border-width: 2px;
+    /* Sombra para que la tarjeta resalte como un libro físico */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.7), 15, 0, 0, 6);
+}
+
+/* Labels */
+.label {
+    -fx-text-fill: #4e342e; /* Letra café oscuro para contraste */
+    -fx-background-color: transparent;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.title-label {
+    -fx-text-fill: #27140f;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-background-color: transparent;
+}
+
+/* Botones estilo lomo de cuero */
+.button {
+    -fx-background-color: #6d4c41;
+    -fx-text-fill: #f4ecd8;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 4px;
+    -fx-border-color: #4e342e;
+    -fx-border-radius: 4px;
+    -fx-border-width: 1px;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #8d6e63; /* Aclara un poco al pasar el mouse */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 2);
+}
+
+.button:pressed {
+    -fx-background-color: #4e342e;
+    -fx-translate-y: 1px; /* Pequeño efecto físico de hundimiento al hacer clic */
+}
+
+/* Campos de texto */
+.text-field, .password-field {
+    -fx-background-color: #fff9c4; /* Tono ligerísimamente amarillento */
+    -fx-text-fill: #3e2723;
+    -fx-prompt-text-fill: #a1887f;
+    -fx-border-color: #d7ccc8;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+    -fx-padding: 7px;
+}
+
+.text-field:focused, .password-field:focused {
+    -fx-border-color: #8d6e63; /* El borde se vuelve café al escribir */
+    -fx-background-color: #ffffff;
+}
