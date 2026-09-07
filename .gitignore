@@ -1,0 +1,33 @@
+
+# NetBeans build outputs
+/build/
+/dist/
+/nbproject/private/
+/nbproject/private/private.properties
+/nbproject/private/private.xml
+/nbproject/build-impl.xml
+/nbproject/genfiles.properties
+/.vscode/
+/nb-configuration.xml
+
+# Compiled class files
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.swc
+*.zip
+*.tar.gz
+*.rar
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
