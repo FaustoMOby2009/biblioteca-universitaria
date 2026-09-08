@@ -1,47 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.edu.mejiasoft.biblioteca.controller.DashboardController">
-    <stylesheets>
-        <URL value="@/main/resources/css/estilo-view.css" />
-    </stylesheets>
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/estilo-view.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.edu.mejiasoft.biblioteca.controller.DashboardController">
    <children>
-      <GridPane prefHeight="400.0" prefWidth="600.0">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0" minWidth="0.0" prefWidth="22.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="576.0" minWidth="10.0" prefWidth="551.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="145.0" minWidth="0.0" prefWidth="26.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="77.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="348.0" minHeight="10.0" prefHeight="348.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="128.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+      <AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="card" stylesheets="@../css/estilo-view.css" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
          <children>
-            <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <children>
-                  <TableView fx:id="tbCatalogoLibros" layoutX="4.0" layoutY="53.0" prefHeight="220.0" prefWidth="543.0">
-                    <columns>
-                      <TableColumn fx:id="tvColumnIsbn" prefWidth="51.0" text="ISBN" />
-                      <TableColumn fx:id="tvColumnTitulo" prefWidth="60.0" text="Titulo" />
-                        <TableColumn fx:id="tvColumnAutorPrincipal" prefWidth="99.0" text="Autor principal" />
-                        <TableColumn fx:id="tvColumnEditorial" prefWidth="75.0" text="Editorial" />
-                        <TableColumn fx:id="tvColumnYearPublicacion" prefWidth="90.0" text="Año publicacion" />
-                        <TableColumn fx:id="tvColumnCopiasDisponibles" prefWidth="61.0" text="Copias disponibles" />
-                        <TableColumn fx:id="tvColumnUsernameBibliotecario" prefWidth="105.0" text="Username bibliotecario" />
-                    </columns>
-                  </TableView>
-               </children>
-            </Pane>
+            <TableView fx:id="tvCatalogoLibros" prefHeight="339.0" prefWidth="540.0" stylesheets="@../css/estilo-view.css" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+              <columns>
+                <TableColumn fx:id="tvColumnIsbn" prefWidth="51.0" text="ISBN" />
+                <TableColumn fx:id="tvColumnTitulo" prefWidth="60.0" text="Titulo" />
+                  <TableColumn fx:id="tvColumnAutorPrincipal" prefWidth="99.0" text="Autor principal" />
+                  <TableColumn fx:id="tvColumnEditorial" prefWidth="75.0" text="Editorial" />
+                  <TableColumn fx:id="tvColumnYearPublicacion" prefWidth="90.0" text="Año publicacion" />
+                  <TableColumn fx:id="tvColumnCopias" prefWidth="61.0" text="Copias disponibles" />
+                  <TableColumn fx:id="tvColumnUserBibliotecario" prefWidth="105.0" text="Username bibliotecario" />
+              </columns>
+            </TableView>
          </children>
-      </GridPane>
+      </AnchorPane>
    </children>
 </AnchorPane>
