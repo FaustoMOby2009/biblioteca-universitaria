@@ -48,7 +48,7 @@ public class LoginController {
             boolean autenticado = (hashGuardado != null) && BCrypt.checkpw(bibliotecarioLogin.getPassword(), hashGuardado);
 
             if (autenticado) {
-                stage.showInfoAlert("Acceso autorizado", "Credenciales correctas", "Usted ha iniciado sesion", AlertType.INFORMATION);
+            stage.mostrarDashboardView(bibliotecarioLogin);
             } else {
                 stage.showInfoAlert("Acceso Denegado", "Credenciales incorrectas", "El correo o la contraseña no coinciden.", AlertType.ERROR);
             }

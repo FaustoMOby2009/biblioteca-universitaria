@@ -70,7 +70,7 @@ public class Bibliotecario {
     public boolean registrar(Bibliotecario bibliotecario) {
         String contrasenaHash = BCrypt.hashpw(bibliotecario.getPassword(), BCrypt.gensalt(12));
 
-        String sql = "INSERT INTO Bibliotecarios (nombre, username, password_hash, email) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO bibliotecarios (id_bibliotecario, nombre, username, password_hash, email) VALUES (UUID(), ?, ?, ?, ?)";;
 
         try (PreparedStatement pstm = DataBaseConnection.getConnectionDataBase().prepareStatement(sql)) {
             pstm.setString(1, bibliotecario.getNombre());

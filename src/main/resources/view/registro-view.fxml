@@ -13,7 +13,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.edu.mejiasoft.biblioteca.controller.RegistroController">
     <stylesheets>
-        <URL value="@/main/resources/css/registro-view.css" />
+        <URL value="@/main/resources/css/estilo-view.css" />
     </stylesheets>
    <children>
       <GridPane prefHeight="500.0" prefWidth="600.0" styleClass="root" stylesheets="@../css/estilo-view.css">

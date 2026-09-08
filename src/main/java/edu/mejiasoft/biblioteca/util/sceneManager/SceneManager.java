@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+import main.java.edu.mejiasoft.biblioteca.controller.DashboardController;
 import main.java.edu.mejiasoft.biblioteca.controller.LoginController;
 import main.java.edu.mejiasoft.biblioteca.controller.RegistroController;
 import main.java.edu.mejiasoft.biblioteca.model.Bibliotecario;
@@ -74,6 +75,23 @@ public class SceneManager {
         alert.setHeaderText(head);
         alert.setContentText(content);
         alert.showAndWait();
+    }
+    
+    public void mostrarDashboardView(Bibliotecario usuarioLogin) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(FXML_PATH + "dashboard-view.fxml"));
+
+        loader.setControllerFactory(clazz -> {
+            if (clazz == DashboardController.class) {
+                return new DashboardController(usuarioLogin, this);
+            }
+            try {
+                return clazz.getDeclaredConstructor().newInstance();
+            } catch (Exception e) {
+                throw new RuntimeException("Error al crear el constructor: " + e.getMessage());
+            }
+        });
+
+        cargarYMostrarEscena(loader, "Dashboard - Biblioteca", 1000, 700);
     }
 }
 
