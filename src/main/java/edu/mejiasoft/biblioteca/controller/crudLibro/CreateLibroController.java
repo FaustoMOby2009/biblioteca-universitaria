@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import main.java.edu.mejiasoft.biblioteca.model.Bibliotecario;
 import main.java.edu.mejiasoft.biblioteca.model.Libro;
 import main.java.edu.mejiasoft.biblioteca.util.sceneManager.SceneManager;
 
@@ -20,6 +21,7 @@ public class CreateLibroController implements Initializable {
     }
 
     private SceneManager stage;
+    private Bibliotecario bibliotecario;
 
     @FXML
     private TextField txtIsbn;
@@ -33,6 +35,14 @@ public class CreateLibroController implements Initializable {
     private TextField txtYearPublicacion;
     @FXML
     private TextField txtCopias;
+
+    public void setSceneManager(SceneManager stage) {
+        this.stage = stage;
+    }
+
+    public void setBibliotecario(Bibliotecario bibliotecario) {
+        this.bibliotecario = bibliotecario;
+    }
 
     @FXML
     private void guardarLibro(ActionEvent event) {
@@ -51,14 +61,14 @@ public class CreateLibroController implements Initializable {
             nuevoLibro.setEditorial(txtEditorial.getText().trim());
             nuevoLibro.setYearPublicacion(txtYearPublicacion.getText().trim());
             nuevoLibro.setCopiasDisponibles(copias);
-            nuevoLibro.setIdBibliotecario("ID_DEL_BIBLIOTECARIO_ACTIVO");
+            nuevoLibro.setIdBibliotecario(this.bibliotecario.getIdBibliotecario());
 
             // 3. Ejecutar la lógica de negocio y validaciones del DAO
             Libro libro = new Libro();
             String resultado = libro.createLibroValidacion(nuevoLibro);
 
             if (resultado.equals("EXITO")) {
-                stage.showInfoAlert("Éxito", "Libro registrado correctamente."," =0 ",Alert.AlertType.INFORMATION);
+                stage.showInfoAlert("Éxito", "Libro registrado correctamente.", " =0 ", Alert.AlertType.INFORMATION);
 
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.close();
@@ -67,13 +77,13 @@ public class CreateLibroController implements Initializable {
             }
 
         } catch (NumberFormatException e) {
-            stage.showInfoAlert("Datos no validos", "Dato inválido", "El campo de copias debe ser un número entero válido.",Alert.AlertType.ERROR);
+            stage.showInfoAlert("Datos no validos", "Dato inválido", "El campo de copias debe ser un número entero válido.", Alert.AlertType.ERROR);
         }
     }
-    
+
     @FXML
-private void regresarAlDashboard(ActionEvent event) {
-    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    stage.close();
-}
+    private void regresarAlDashboard(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.close();
+    }
 }

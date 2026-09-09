@@ -88,19 +88,26 @@ public class Bibliotecario {
     }
 
     // --- LÓGICA DE LOGIN ---
-    public String findUserByEmail(Bibliotecario bibliotecario) {
-        String sql = "select password_hash from bibliotecarios where email = ?";
+public String findUserByEmail(Bibliotecario bibliotecario) {
+    String sql = "SELECT id_bibliotecario, username, password_hash FROM bibliotecarios WHERE email = ?";
 
-        try (Connection conn = DataBaseConnection.getConnectionDataBase(); PreparedStatement pstm = conn.prepareStatement(sql)) {
-            
-            pstm.setString(1, bibliotecario.getEmail());
-            ResultSet rs = pstm.executeQuery();
+    try (Connection conn = DataBaseConnection.getConnectionDataBase(); 
+         PreparedStatement pstm = conn.prepareStatement(sql)) {
+        
+        pstm.setString(1, bibliotecario.getEmail());
+        
+        try (ResultSet rs = pstm.executeQuery()) {
             if (rs.next()) {
+                // Asignar los datos recuperados de la BD al objeto que viene por parámetro
+                bibliotecario.setIdBibliotecario(rs.getString("id_bibliotecario"));
+                bibliotecario.setUsername(rs.getString("username"));
+                
                 return rs.getString("password_hash");
             }
-        } catch (SQLException e) {
-            System.out.println("Error: " + e.getMessage());
         }
-        return null;
+    } catch (SQLException e) {
+        System.out.println("Error: " + e.getMessage());
     }
+    return null;
+}
 }

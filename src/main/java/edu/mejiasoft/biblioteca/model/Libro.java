@@ -175,8 +175,12 @@ public boolean existeIsbn(Libro libro) {
 // Logica de negocio del create libro
 public String createLibroValidacion(Libro libro) {
     if (libro.getIsbn() == null || libro.getIsbn().trim().isEmpty() || 
-        libro.getTitulo() == null || libro.getTitulo().trim().isEmpty()) {
-        return "El ISBN y el Título son obligatorios.";
+        libro.getIdBibliotecario() == null || libro.getIdBibliotecario().trim().isEmpty()||
+        libro.getTitulo() == null || libro.getTitulo().trim().isEmpty()||
+        libro.getAutorPrincipal() == null || libro.getAutorPrincipal().trim().isEmpty()||
+        libro.getEditorial() == null || libro.getEditorial().trim().isEmpty() || 
+        libro.getYearPublicacion() == null || libro.getYearPublicacion().trim().isEmpty()){
+        return "campos son OBLIGATORIOS.";
     }
         
     if (existeIsbn(libro)) {

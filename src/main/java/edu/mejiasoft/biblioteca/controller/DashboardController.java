@@ -51,6 +51,10 @@ public class DashboardController implements Initializable {
     public DashboardController() {
     }
 
+    public void setSceneManager(SceneManager stage) {
+    this.stage = stage;
+}
+    
     public void setBibliotecario(Bibliotecario bibliotecario) {
         this.bibliotecario = bibliotecario;
     }
@@ -73,7 +77,8 @@ public class DashboardController implements Initializable {
 @FXML
 private void abrirVentana(ActionEvent event) {
     Stage stageActual = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    this.stage.abrirModalCrearLibro("Registrar Nuevo Libro", stageActual);
+    System.out.println("Bibliotecario actual en Dashboard: " + (this.bibliotecario != null ? this.bibliotecario.getIdBibliotecario() : "ES NULO"));
+    this.stage.abrirModalCrearLibro("Registrar Nuevo Libro", stageActual, this.bibliotecario);
     
     cargarTablaLibros();
 }

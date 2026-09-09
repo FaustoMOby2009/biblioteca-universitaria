@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/estilo-view.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.edu.mejiasoft.biblioteca.controller.DashboardController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/estilo-view.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.edu.mejiasoft.biblioteca.controller.DashboardController">
    <children>
       <AnchorPane layoutX="30.0" layoutY="30.0" prefHeight="400.0" prefWidth="600.0" styleClass="card" stylesheets="@../css/estilo-view.css" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
          <children>
@@ -22,7 +22,7 @@
                         <TableColumn fx:id="tvColumnEditorial" prefWidth="75.0" text="Editorial" />
                         <TableColumn fx:id="tvColumnYearPublicacion" prefWidth="90.0" text="Año publicacion" />
                         <TableColumn fx:id="tvColumnCopias" prefWidth="61.0" text="Copias disponibles" />
-                        <TableColumn fx:id="tvColumnUserBibliotecario" prefWidth="105.0" text="Username bibliotecario" />
+                        <TableColumn fx:id="tvColumnUserBibliotecario" prefWidth="105.0" text="Usernamebibliotecario" />
                     </columns>
                   </TableView>
                   <Button mnemonicParsing="false" onAction="#abrirVentana" prefHeight="25.0" prefWidth="94.0" text="Crear" />
