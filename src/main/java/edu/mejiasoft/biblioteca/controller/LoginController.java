@@ -39,16 +39,16 @@ public class LoginController {
         }
 
         try {
-            Bibliotecario bibliotecarioLogin = new Bibliotecario();
-            bibliotecarioLogin.setEmail(email);
-            bibliotecarioLogin.setPassword(contrasena);
+            Bibliotecario bibliotecario = new Bibliotecario();
+            bibliotecario.setEmail(email);
+            bibliotecario.setPassword(contrasena);
 
-            String hashGuardado = bibliotecarioLogin.findUserByEmail(bibliotecarioLogin);
+            String hashGuardado = bibliotecario.findUserByEmail(bibliotecario);
 
-            boolean autenticado = (hashGuardado != null) && BCrypt.checkpw(bibliotecarioLogin.getPassword(), hashGuardado);
+            boolean autenticado = (hashGuardado != null) && BCrypt.checkpw(bibliotecario.getPassword(), hashGuardado);
 
             if (autenticado) {
-            stage.mostrarDashboardView(bibliotecarioLogin);
+            stage.mostrarDashboardView(bibliotecario);
             } else {
                 stage.showInfoAlert("Acceso Denegado", "Credenciales incorrectas", "El correo o la contraseña no coinciden.", AlertType.ERROR);
             }
