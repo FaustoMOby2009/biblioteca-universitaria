@@ -128,4 +128,67 @@ public static ObservableList<Libro> obtenerListaLibros() {
 
         return listaLibros;
     }
+
+// Metodo para la consulta SQL del create
+public boolean createLibro(Libro libro) {
+    String sql = "INSERT INTO libros (isbn, titulo, autor_principal, editorial, year_publicacion, copias_disponibles, id_bibliotecario) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    
+    try (Connection conn = DataBaseConnection.getConnectionDataBase();
+         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        
+        pstmt.setString(1, libro.getIsbn());
+        pstmt.setString(2, libro.getTitulo());
+        pstmt.setString(3, libro.getAutorPrincipal());
+        pstmt.setString(4, libro.getEditorial());
+        pstmt.setString(5, libro.getYearPublicacion());
+        pstmt.setInt(6, libro.getCopiasDisponibles());
+        pstmt.setString(7, libro.getIdBibliotecario());
+        
+        pstmt.executeUpdate();
+        return true;
+        
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false;
+    }
+}
+
+public boolean existeIsbn(Libro libro) {
+    String sql = "SELECT COUNT(*) FROM libros WHERE isbn = ?";
+    
+    try (Connection conn = DataBaseConnection.getConnectionDataBase();
+         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        
+        pstmt.setString(1, libro.getIsbn().trim());
+        
+        try (ResultSet rs = pstmt.executeQuery()) {
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return false;
+}
+
+// Logica de negocio del create libro
+public String createLibroValidacion(Libro libro) {
+    if (libro.getIsbn() == null || libro.getIsbn().trim().isEmpty() || 
+        libro.getTitulo() == null || libro.getTitulo().trim().isEmpty()) {
+        return "El ISBN y el Título son obligatorios.";
+    }
+        
+    if (existeIsbn(libro)) {
+        return "El ISBN '" + libro.getIsbn().trim() + "' ya está registrado en el sistema.";
+    }
+    
+    if (libro.getCopiasDisponibles() < 0) {
+        return "Las copias disponibles no pueden ser un valor negativo.";
+    }
+    
+    boolean exito = createLibro(libro);
+    
+    return exito ? "EXITO" : "Error crítico al guardar en la base de datos.";
+}
 }

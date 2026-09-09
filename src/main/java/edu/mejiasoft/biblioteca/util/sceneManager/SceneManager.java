@@ -1,10 +1,13 @@
 package main.java.edu.mejiasoft.biblioteca.util.sceneManager;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import main.java.edu.mejiasoft.biblioteca.controller.DashboardController;
 import main.java.edu.mejiasoft.biblioteca.controller.LoginController;
@@ -76,7 +79,7 @@ public class SceneManager {
         alert.setContentText(content);
         alert.showAndWait();
     }
-    
+
     public void mostrarDashboardView(Bibliotecario usuarioLogin) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(FXML_PATH + "dashboard-view.fxml"));
 
@@ -93,5 +96,26 @@ public class SceneManager {
 
         cargarYMostrarEscena(loader, "Dashboard - Biblioteca", 1000, 700);
     }
-}
 
+    public void abrirModalCrearLibro(String titulo, Stage ventanaActual) {
+    try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(FXML_PATH + "crudLibro/create-libro-view.fxml"));
+        Parent root = loader.load();
+
+        Stage modalStage = new Stage();
+        modalStage.setTitle(titulo);
+        modalStage.initModality(Modality.APPLICATION_MODAL);
+
+        if (ventanaActual != null) {
+            modalStage.initOwner(ventanaActual);
+        }
+
+        modalStage.setScene(new Scene(root));
+        modalStage.setResizable(false);
+        modalStage.showAndWait();
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+}

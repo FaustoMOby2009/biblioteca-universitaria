@@ -1,24 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/estilo-view.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.edu.mejiasoft.biblioteca.controller.DashboardController">
    <children>
-      <AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="card" stylesheets="@../css/estilo-view.css" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
+      <AnchorPane layoutX="30.0" layoutY="30.0" prefHeight="400.0" prefWidth="600.0" styleClass="card" stylesheets="@../css/estilo-view.css" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
          <children>
-            <TableView fx:id="tvCatalogoLibros" prefHeight="339.0" prefWidth="540.0" stylesheets="@../css/estilo-view.css" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
-              <columns>
-                <TableColumn fx:id="tvColumnIsbn" prefWidth="51.0" text="ISBN" />
-                <TableColumn fx:id="tvColumnTitulo" prefWidth="60.0" text="Titulo" />
-                  <TableColumn fx:id="tvColumnAutorPrincipal" prefWidth="99.0" text="Autor principal" />
-                  <TableColumn fx:id="tvColumnEditorial" prefWidth="75.0" text="Editorial" />
-                  <TableColumn fx:id="tvColumnYearPublicacion" prefWidth="90.0" text="Año publicacion" />
-                  <TableColumn fx:id="tvColumnCopias" prefWidth="61.0" text="Copias disponibles" />
-                  <TableColumn fx:id="tvColumnUserBibliotecario" prefWidth="105.0" text="Username bibliotecario" />
-              </columns>
-            </TableView>
+            <VBox alignment="CENTER" layoutX="12.0" layoutY="4.0" prefHeight="343.0" prefWidth="513.0" spacing="20.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+               <children>
+                  <Label text="Catalogo de libros" />
+                  <TableView fx:id="tvCatalogoLibros" prefHeight="263.0" prefWidth="519.0" stylesheets="@../css/estilo-view.css" VBox.vgrow="ALWAYS">
+                    <columns>
+                      <TableColumn fx:id="tvColumnIsbn" prefWidth="51.0" text="ISBN" />
+                      <TableColumn fx:id="tvColumnTitulo" prefWidth="60.0" text="Titulo" />
+                        <TableColumn fx:id="tvColumnAutorPrincipal" prefWidth="99.0" text="Autor principal" />
+                        <TableColumn fx:id="tvColumnEditorial" prefWidth="75.0" text="Editorial" />
+                        <TableColumn fx:id="tvColumnYearPublicacion" prefWidth="90.0" text="Año publicacion" />
+                        <TableColumn fx:id="tvColumnCopias" prefWidth="61.0" text="Copias disponibles" />
+                        <TableColumn fx:id="tvColumnUserBibliotecario" prefWidth="105.0" text="Username bibliotecario" />
+                    </columns>
+                  </TableView>
+                  <Button mnemonicParsing="false" onAction="#abrirVentana" prefHeight="25.0" prefWidth="94.0" text="Crear" />
+               </children>
+            </VBox>
          </children>
       </AnchorPane>
    </children>
