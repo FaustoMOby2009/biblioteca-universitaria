@@ -1,5 +1,6 @@
 package main.java.edu.mejiasoft.biblioteca.util.sceneManager;
 
+import java.util.Optional;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import main.java.edu.mejiasoft.biblioteca.controller.DashboardController;
@@ -154,5 +156,15 @@ public class SceneManager {
         System.out.println("Error al abrir el modal de edición: " + e.getMessage());
         e.printStackTrace();
     }
+}
+    
+    public boolean showConfirmationAlert(String titulo, String mensaje) {
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    alert.setTitle(titulo);
+    alert.setHeaderText(null);
+    alert.setContentText(mensaje);
+
+    Optional<ButtonType> result = alert.showAndWait();
+    return result.isPresent() && result.get() == ButtonType.OK;
 }
 }

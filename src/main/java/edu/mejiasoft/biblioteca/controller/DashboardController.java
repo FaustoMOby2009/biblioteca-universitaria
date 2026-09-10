@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -52,9 +53,9 @@ public class DashboardController implements Initializable {
     }
 
     public void setSceneManager(SceneManager stage) {
-    this.stage = stage;
-}
-    
+        this.stage = stage;
+    }
+
     public void setBibliotecario(Bibliotecario bibliotecario) {
         this.bibliotecario = bibliotecario;
     }
@@ -62,7 +63,7 @@ public class DashboardController implements Initializable {
     public Bibliotecario getBibliotecario() {
         return bibliotecario;
     }
-    
+
     private void configurarColumnas() {
         tvColumnIsbn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
         tvColumnTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
@@ -74,27 +75,27 @@ public class DashboardController implements Initializable {
         tvCatalogoLibros.setItems(Libro.obtenerListaLibros());
     }
 
-@FXML
-private void abrirVentanaCreate(ActionEvent event) {
-    Stage stageActual = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    System.out.println("Bibliotecario actual en Dashboard: " + (this.bibliotecario != null ? this.bibliotecario.getIdBibliotecario() : "ES NULO"));
-    stage.abrirModalCrearLibro(stageActual, this.bibliotecario);
-    
-    cargarTablaLibros();
-}
+    @FXML
+    private void abrirVentanaCreate(ActionEvent event) {
+        Stage stageActual = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        System.out.println("Bibliotecario actual en Dashboard: " + (this.bibliotecario != null ? this.bibliotecario.getIdBibliotecario() : "ES NULO"));
+        stage.abrirModalCrearLibro(stageActual, this.bibliotecario);
 
-@FXML
+        cargarTablaLibros();
+    }
+
+    @FXML
     private void abrirVentanaEditar(ActionEvent event) {
         Libro libroSeleccionado = tvCatalogoLibros.getSelectionModel().getSelectedItem();
 
         if (libroSeleccionado == null) {
-            stage.showInfoAlert("Selección requerida", "Por favor, selecciona un libro de la tabla para editar.","=0", Alert.AlertType.WARNING);
+            stage.showInfoAlert("Selección requerida", "Por favor, selecciona un libro de la tabla para editar.", "=0", Alert.AlertType.WARNING);
             return;
         }
 
         Stage stageActual = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.abrirModalEditarLibro(stageActual, this.bibliotecario, libroSeleccionado);
-        
+
         cargarTablaLibros();
     }
 
@@ -102,5 +103,33 @@ private void abrirVentanaCreate(ActionEvent event) {
         Libro libro = new Libro();
         ObservableList<Libro> listaLibros = Libro.obtenerListaLibros();
         tvCatalogoLibros.setItems(listaLibros);
+    }
+
+    @FXML
+    private void eliminarLibro(ActionEvent event) {
+        Libro libroSeleccionado = tvCatalogoLibros.getSelectionModel().getSelectedItem();
+
+        if (libroSeleccionado == null) {
+            stage.showInfoAlert("Selección requerida", "Por favor, selecciona un libro de la tabla para eliminar.", "=0", Alert.AlertType.WARNING);
+            return;
+        }
+
+        // Solicitamos la confirmación utilizando SceneManager
+        boolean confirmado = stage.showConfirmationAlert(
+                "Confirmar eliminación",
+                "¿Estás seguro de que deseas eliminar el libro '" + libroSeleccionado.getTitulo() + "'?"
+        );
+
+        if (confirmado) {
+            Libro libroModel = new Libro();
+            String resultado = libroModel.eliminarLibroValidacion(libroSeleccionado);
+
+            if ("EXITO".equals(resultado)) {
+                stage.showInfoAlert("Éxito", "El libro ha sido eliminado correctamente.", "=0", Alert.AlertType.INFORMATION);
+                cargarTablaLibros();
+            } else {
+                stage.showInfoAlert("Error al eliminar", resultado, "=0", Alert.AlertType.ERROR);
+            }
+        }
     }
 }

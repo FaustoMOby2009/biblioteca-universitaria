@@ -30,6 +30,7 @@
                      <children>
                         <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#abrirVentanaCreate" prefHeight="25.0" prefWidth="94.0" text="Crear" HBox.hgrow="ALWAYS" />
                         <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#abrirVentanaEditar" prefHeight="25.0" prefWidth="94.0" text="Actualizar" HBox.hgrow="ALWAYS" />
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#eliminarLibro" text="Eliminar" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                </children>
