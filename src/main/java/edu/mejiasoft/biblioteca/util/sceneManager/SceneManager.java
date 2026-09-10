@@ -13,7 +13,9 @@ import main.java.edu.mejiasoft.biblioteca.controller.DashboardController;
 import main.java.edu.mejiasoft.biblioteca.controller.LoginController;
 import main.java.edu.mejiasoft.biblioteca.controller.RegistroController;
 import main.java.edu.mejiasoft.biblioteca.controller.crudLibro.CreateLibroController;
+import main.java.edu.mejiasoft.biblioteca.controller.crudLibro.UpdateLibroController;
 import main.java.edu.mejiasoft.biblioteca.model.Bibliotecario;
+import main.java.edu.mejiasoft.biblioteca.model.Libro;
 
 public class SceneManager {
 
@@ -90,24 +92,24 @@ public class SceneManager {
         alert.showAndWait();
     }
 
-public void mostrarDashboardView(Bibliotecario bibliotecario) throws Exception {
-    FXMLLoader loader = new FXMLLoader(getClass().getResource(FXML_PATH + "dashboard-view.fxml"));
+    public void mostrarDashboardView(Bibliotecario bibliotecario) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(FXML_PATH + "dashboard-view.fxml"));
 
-    loader.setControllerFactory(clazz -> {
-        if (clazz == DashboardController.class) {
-            return new DashboardController(bibliotecario, this);
-        }
-        try {
-            return clazz.getDeclaredConstructor().newInstance();
-        } catch (Exception e) {
-            throw new RuntimeException("Error al crear el constructor: " + e.getMessage());
-        }
-    });
+        loader.setControllerFactory(clazz -> {
+            if (clazz == DashboardController.class) {
+                return new DashboardController(bibliotecario, this);
+            }
+            try {
+                return clazz.getDeclaredConstructor().newInstance();
+            } catch (Exception e) {
+                throw new RuntimeException("Error al crear el constructor: " + e.getMessage());
+            }
+        });
 
-    cargarYMostrarEscena(loader, "Dashboard - Biblioteca", 1000, 700);
-}
+        cargarYMostrarEscena(loader, "Dashboard - Biblioteca", 1000, 700);
+    }
 
-    public void abrirModalCrearLibro(String titulo, Stage ventanaActual, Bibliotecario bibliotecario) {
+    public void abrirModalCrearLibro(Stage ventanaActual, Bibliotecario bibliotecario) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(FXML_PATH + "crudLibro/create-libro-view.fxml"));
             Parent root = loader.load();
@@ -117,7 +119,6 @@ public void mostrarDashboardView(Bibliotecario bibliotecario) throws Exception {
             controller.setBibliotecario(bibliotecario);
 
             Stage modalStage = new Stage();
-            modalStage.setTitle(titulo);
             modalStage.initModality(Modality.APPLICATION_MODAL);
 
             if (ventanaActual != null) {
@@ -132,4 +133,26 @@ public void mostrarDashboardView(Bibliotecario bibliotecario) throws Exception {
             e.printStackTrace();
         }
     }
+    
+    public void abrirModalEditarLibro( Stage parentStage, Bibliotecario bibliotecario, Libro libroSeleccionado) {
+    try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(FXML_PATH + "crudLibro/update-libro-view.fxml"));
+        Parent root = loader.load();
+
+        UpdateLibroController controller = loader.getController();
+        controller.setSceneManager(this);
+        controller.setBibliotecario(bibliotecario);
+        controller.cargarDatosLibro(libroSeleccionado);
+
+        Stage modalStage = new Stage();
+        modalStage.initModality(Modality.WINDOW_MODAL);
+        modalStage.initOwner(parentStage);
+        modalStage.setScene(new Scene(root));
+        modalStage.showAndWait();
+
+    } catch (Exception e) {
+        System.out.println("Error al abrir el modal de edición: " + e.getMessage());
+        e.printStackTrace();
+    }
+}
 }

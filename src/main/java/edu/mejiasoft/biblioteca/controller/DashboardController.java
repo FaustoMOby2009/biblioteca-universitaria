@@ -7,7 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -75,13 +75,28 @@ public class DashboardController implements Initializable {
     }
 
 @FXML
-private void abrirVentana(ActionEvent event) {
+private void abrirVentanaCreate(ActionEvent event) {
     Stage stageActual = (Stage) ((Node) event.getSource()).getScene().getWindow();
     System.out.println("Bibliotecario actual en Dashboard: " + (this.bibliotecario != null ? this.bibliotecario.getIdBibliotecario() : "ES NULO"));
-    this.stage.abrirModalCrearLibro("Registrar Nuevo Libro", stageActual, this.bibliotecario);
+    stage.abrirModalCrearLibro(stageActual, this.bibliotecario);
     
     cargarTablaLibros();
 }
+
+@FXML
+    private void abrirVentanaEditar(ActionEvent event) {
+        Libro libroSeleccionado = tvCatalogoLibros.getSelectionModel().getSelectedItem();
+
+        if (libroSeleccionado == null) {
+            stage.showInfoAlert("Selección requerida", "Por favor, selecciona un libro de la tabla para editar.","=0", Alert.AlertType.WARNING);
+            return;
+        }
+
+        Stage stageActual = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.abrirModalEditarLibro(stageActual, this.bibliotecario, libroSeleccionado);
+        
+        cargarTablaLibros();
+    }
 
     public void cargarTablaLibros() {
         Libro libro = new Libro();

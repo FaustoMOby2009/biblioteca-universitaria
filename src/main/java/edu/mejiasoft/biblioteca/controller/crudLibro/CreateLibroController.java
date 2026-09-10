@@ -48,7 +48,7 @@ public class CreateLibroController implements Initializable {
     private void guardarLibro(ActionEvent event) {
         try {
             if (txtIsbn.getText().trim().isEmpty() || txtTitulo.getText().trim().isEmpty()) {
-                stage.showInfoAlert("Campos vacíos", "El ISBN y el Título son obligatorios.", "asdjlk;asdfjklasdf", Alert.AlertType.WARNING);
+                stage.showInfoAlert("Campos vacíos", "El ISBN y el Título son obligatorios.", "=0", Alert.AlertType.WARNING);
                 return;
             }
 

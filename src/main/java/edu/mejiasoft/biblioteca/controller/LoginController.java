@@ -64,7 +64,7 @@ public class LoginController {
                 stage.showInfoAlert("Acceso Denegado", "Credenciales incorrectas", "El correo o la contraseña no coinciden.", AlertType.ERROR);
             }
         } catch (Exception e) {
-            stage.showInfoAlert("Error de validación", "Datos inválidos", e.getMessage(), AlertType.WARNING);
+            stage.showInfoAlert("Error de validación", "Datos inválidos", "=0", AlertType.WARNING);
         }
     }
 
