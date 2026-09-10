@@ -27,8 +27,17 @@ public class LoginController {
     public LoginController() {
     }
 
+    public void setSceneManager(SceneManager stage) {
+        this.stage = stage;
+    }
+
     @FXML
     public void handleIniciarSesion() {
+        if (stage == null) {
+            System.out.println("Error crítico: SceneManager no ha sido inyectado en LoginController.");
+            return;
+        }
+
         String email = (txtEmail != null && txtEmail.getText() != null) ? txtEmail.getText().trim() : "";
         String contrasena = (txtPassword != null && txtPassword.getText() != null) ? txtPassword.getText() : "";
 
@@ -48,12 +57,14 @@ public class LoginController {
             boolean autenticado = (hashGuardado != null) && BCrypt.checkpw(bibliotecario.getPassword(), hashGuardado);
 
             if (autenticado) {
-            stage.mostrarDashboardView(bibliotecario);
+                System.out.println("ID cargado correctamente: " + bibliotecario.getIdBibliotecario());
+                System.out.println("ID del Bibliotecario antes de entrar al Dashboard: " + bibliotecario.getIdBibliotecario());
+                stage.mostrarDashboardView(bibliotecario);
             } else {
                 stage.showInfoAlert("Acceso Denegado", "Credenciales incorrectas", "El correo o la contraseña no coinciden.", AlertType.ERROR);
             }
         } catch (Exception e) {
-            stage.showInfoAlert("Error de validación", "Datos inválidos", e.getMessage(), AlertType.WARNING);
+            stage.showInfoAlert("Error de validación", "Datos inválidos", "=0", AlertType.WARNING);
         }
     }
 
