@@ -132,4 +132,23 @@ public class DashboardController implements Initializable {
             }
         }
     }
+
+    @FXML
+    private void cerrarSesion(ActionEvent event) {
+        boolean confirmado = stage.showConfirmationAlert(
+                "Cerrar Sesión",
+                "¿Estás seguro de que deseas salir del sistema?"
+        );
+
+        if (confirmado) {
+            this.bibliotecario = null;
+
+            try {
+                stage.mostrarLoginView();
+            } catch (Exception e) {
+                System.err.println("Error al regresar al login: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+    }
 }
